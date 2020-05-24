@@ -10,6 +10,13 @@ pipeline {
         //          '''
         //      }
         //  }
+         stage('Lint HTML') {
+             steps {
+                sh 'echo Checking Files with LINT'
+                sh 'tidy -q -e *.html'
+                sh 'echo Checking Files with LINT Completed'
+             }
+         }
          stage('Upload to AWS') {
              steps {
                 withAWS(region:'us-east-2', credentials:'aws-static') {
